@@ -4,9 +4,7 @@
 
 ### Backend
 1. `cd server`
-2. `npm install`
-3. Edit `.env` and add your `MONGO_URI`.
-4. `npm start`
+2. `npm start`
 
 ### Frontend
 1. Navigate to `client/` folder.
