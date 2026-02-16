@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instructor Dashboard</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <nav>
+        <h2>Instructor Dashboard</h2>
+        <button onclick="logout()">Logout</button>
+    </nav>
+
+    <div class="container">
+        <!-- Create Course Section -->
+        <section class="card">
+            <h3>Create New Course</h3>
+            <form onsubmit="createCourse(event)">
+                <input type="text" id="course-title" placeholder="Course Title" required>
+                <textarea id="course-desc" placeholder="Course Description" required></textarea>
+                <label>Start Date:</label>
+                <input type="date" id="course-date" required>
+                <button type="submit">Create Course</button>
+            </form>
+        </section>
+
+        <!-- Course List Section -->
+        <section class="card">
+            <h3>My Courses</h3>
+            <div id="courses-list">Loading courses...</div>
+        </section>
+    </div>
+
+    <script src="js/auth.js"></script>
+    <script src="js/instructor.js"></script>
+</body>
+
+</html>
