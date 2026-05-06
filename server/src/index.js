@@ -19,3 +19,6 @@ app.use('/api/enrollments', enrollmentRoutes);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+
+// Export app for Vercel serverless functions
+module.exports = app;
