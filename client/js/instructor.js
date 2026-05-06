@@ -36,15 +36,15 @@ async function loadCourses() {
         });
         const courses = await res.json();
 
-        if (courses.length === 0) list.innerHTML = '<p>No courses created yet.</p>';
+        if (courses.length === 0) list.innerHTML = '<div class="empty-state">No courses created yet.</div>';
         else {
             list.innerHTML = courses.map(c => `
                 <div class="course-item">
                     <h4>${c.title}</h4>
                     <p>${c.description}</p>
                     <small>Starts: ${new Date(c.startDate).toLocaleDateString()}</small>
-                    <button onclick="viewEnrollments('${c._id}')" style="margin-top:10px; font-size: 0.9em; background:#7f8c8d;">View Students</button>
-                    <div id="enrollments-${c._id}" style="margin-top:5px; font-size:0.9em;"></div>
+                    <button class="btn-secondary" onclick="viewEnrollments('${c._id}')" style="margin-top:auto;">View Students</button>
+                    <div id="enrollments-${c._id}" class="enrollments-container"></div>
                 </div>
             `).join('');
         }
@@ -59,10 +59,10 @@ async function viewEnrollments(courseId) {
         });
         const enrollments = await res.json();
 
-        if (enrollments.length === 0) container.innerHTML = '<em>No students enrolled.</em>';
+        if (enrollments.length === 0) container.innerHTML = '<div class="empty-state" style="margin-top: 1rem; padding: 1rem;">No students enrolled.</div>';
         else {
             container.innerHTML = '<ul>' +
-                enrollments.map(e => `<li>${e.student.name} (${e.student.email})</li>`).join('') +
+                enrollments.map(e => `<li>${e.student.name} <span style="color:var(--text-muted);font-size:0.85em;">(${e.student.email})</span></li>`).join('') +
                 '</ul>';
         }
     } catch (err) { console.error(err); }

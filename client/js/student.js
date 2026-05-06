@@ -19,10 +19,10 @@ async function loadAvailableCourses() {
                 <div class="course-item">
                     <h4>${c.title}</h4>
                     <p>${c.description}</p>
-                    <p>Instructor: ${c.instructor.name}</p>
-                    <p class="${isExpired ? 'expired' : ''}">Start Date: ${startDate.toLocaleDateString()}</p>
+                    <small>Instructor: ${c.instructor.name}</small>
+                    <small class="${isExpired ? 'status-expired' : ''}">Start Date: ${startDate.toLocaleDateString()}</small>
                     ${isExpired
-                    ? '<button disabled style="background:#ccc; cursor:not-allowed;">Enrollment Closed</button>'
+                    ? '<button disabled class="btn-disabled">Enrollment Closed</button>'
                     : `<button onclick="enroll('${c._id}')">Enroll Now</button>`
                 }
                 </div>
@@ -39,13 +39,13 @@ async function loadMyEnrollments() {
         });
         const enrollments = await res.json();
 
-        if (enrollments.length === 0) list.innerHTML = '<p>Not enrolled in any courses.</p>';
+        if (enrollments.length === 0) list.innerHTML = '<div class="empty-state">Not enrolled in any courses.</div>';
         else {
             list.innerHTML = enrollments.map(e => `
-                <div class="course-item success">
+                <div class="course-item" style="border-top: 3px solid var(--success);">
                     <h4>${e.course.title}</h4>
                     <p>Instructor: ${e.course.instructor.name}</p>
-                    <small>Enrolled on: ${new Date(e.enrolledAt).toLocaleDateString()}</small>
+                    <small class="status-success">Enrolled on: ${new Date(e.enrolledAt).toLocaleDateString()}</small>
                 </div>
             `).join('');
         }
