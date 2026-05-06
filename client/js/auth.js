@@ -1,4 +1,5 @@
-const API_URL = 'http://localhost:5000/api';
+const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' || window.location.protocol === 'file:';
+const API_URL = isLocal ? 'http://localhost:5000/api' : '/api';
 
 function toggleAuth() {
     document.getElementById('login-form').classList.toggle('hidden');
